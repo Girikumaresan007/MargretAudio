@@ -2,6 +2,7 @@ import "./Hero.css";
 import img from './Hero Assets/image.jpeg'
 import { motion } from "framer-motion";
 
+
 const Hero = () => {
   return (
     <section className="hero" id="home">

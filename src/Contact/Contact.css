@@ -253,6 +253,7 @@ button:hover {
 @media (max-width: 768px) {
   .response-time-card {
     grid-column: 1 / -1;
+     margin-top:0px;
   }
 }
 

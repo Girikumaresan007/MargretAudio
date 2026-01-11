@@ -6,7 +6,7 @@ import CursorRings from "./Components/CursorRings";
 
 import Navbar from "./Navbar/Navbar";
 import Hero from "./Hero/Hero";
-import About from "./About/About";
+import About1 from "./About1/About";
 import Services from "./Services/Services";
 import Youtube from "./Youtube/Youtube";
 import Testimonial from "./Testimonial/Testimonial";
@@ -18,6 +18,7 @@ import BookingPage from "./BookUS/BookingPage";
 import Gallery from "./Gallery/Gallery";
 import WhatsAppFloat from "./Whatapp/WhatsAppFloat";
 import AboutUs from "./AboutUS/AboutUs";
+import About from "./About/About";
 
 
 
@@ -34,7 +35,8 @@ function App() {
     <WhatsAppFloat/>
       <Hero />
       {/* <AboutUs/> */}
-      <About />
+      {/* <About1 /> */}
+      <About/>
       <WhyChooseProLED/>
       <Services />
       {/* <Gallery/> */}

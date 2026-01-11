@@ -1,6 +1,6 @@
 import "./About.css";
 import { motion } from "framer-motion";
-import useCountUpOnView from "../hooks/useCountUpOnView";
+import useCountUpOnView from "../About/useCountUpOnView";
 
 /* ------------------ Animations ------------------ */
 const container = {
@@ -22,7 +22,7 @@ const fadeUp = {
 };
 
 const imageAnim = {
-  hidden: { opacity: 0, scale: 0.95, x: -40 },
+  hidden: { opacity: 0, scale: 0.95, x: 40 },
   show: {
     opacity: 1,
     scale: 1,
@@ -33,98 +33,91 @@ const imageAnim = {
 /* ------------------------------------------------ */
 
 const About = () => {
-  const events = useCountUpOnView(1000);
-  const satisfaction = useCountUpOnView(98);
+  const clients = useCountUpOnView(10);
+  const adSpend = useCountUpOnView(1000);
+  const roi = useCountUpOnView(98);
+  const retention = useCountUpOnView(24/7);
 
   return (
-    <section className="about-section" id="about">
-      <motion.div
-        className="about-container"
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        {/* IMAGE + CONTENT */}
-        <div className="about-wrapper">
-          
-          {/* LEFT IMAGE */}
-          <motion.div className="about-image" variants={imageAnim}>
-            <img
-              src="https://4.imimg.com/data4/VH/CO/MY-19253486/event-management-services.jpg"
-              alt="Event presentation"
-            />
+    <>
+      {/* STORY */}
+      <section className="story-section" id="about">
+        <motion.div
+          className="story-content"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {/* TEXT */}
+          <motion.div className="story-text" variants={container}>
+            <motion.h3 variants={fadeUp}>ABOUT OUR AGENCY</motion.h3>
 
-            {/* FLOATING BADGE */}
-            <motion.div
-              className="experience-badge"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <h2>10+</h2>
-              <span>Years Experience</span>
-            </motion.div>
+            <motion.h2 variants={fadeUp}>
+              Leading the Future of
+              <br />
+              Event Experiences
+            </motion.h2>
+
+            <motion.p variants={fadeUp}>
+             Margret Audio Visual is a full-service event management and technical production agency 
+             specializing in high-impact LED wall solutions for events of all sizes.
+            </motion.p>
+
+            <motion.p variants={fadeUp}>
+             We provide professional LED wall rentals for corporate and live events, 
+             backed by award-winning creative direction and expert technical execution.
+            </motion.p>
+
+            <motion.p variants={fadeUp}>
+            With experienced on-site support and end-to-end event logistics,
+             we ensure seamless, reliable, and visually powerful event experiences.
+            </motion.p>
           </motion.div>
 
-          {/* RIGHT CONTENT */}
-          <motion.div className="about-content" variants={container}>
-            <motion.div className="about-top" variants={container}>
-              <motion.span className="about-tag" variants={fadeUp}>
-                ABOUT OUR AGENCY
-              </motion.span>
+          {/* IMAGE */}
+         <motion.div className="story-image" variants={imageAnim}>
+         <img
+          src="https://4.imimg.com/data4/VH/CO/MY-19253486/event-management-services.jpg"
+          alt="Our Team"
+         />
+</motion.div>
 
-              <motion.h2 variants={fadeUp}>
-                Leading the Future of
-                <br />
-                Event Experiences
-              </motion.h2>
-
-              <motion.p variants={fadeUp}>
-                Margret Audio Visual is a leading full-service event management
-                and technical production agency, with LED wall rentals at the
-                core of our expertise. We deliver seamless, high-impact visual
-                experiences for events of any scale.
-              </motion.p>
-
-              <motion.ul className="about-points" variants={container}>
-                {[
-                  "Professional LED Wall Rentals for Corporate and Live Events",
-                  "Award-Winning Creative Direction",
-                  "Experienced On-Site Technical Support",
-                  "End-to-End Event Logistics",
-                ].map((point, i) => (
-                  <motion.li key={i} variants={fadeUp}>
-                    {point}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* STATS */}
-        <motion.div className="about-stats" variants={container}>
-          <motion.div className="stat-box" ref={events.ref} variants={fadeUp}>
-            <h3>{events.count}+</h3>
-            <p>Events Managed</p>
-          </motion.div>
-
-          <motion.div
-            className="stat-box"
-            ref={satisfaction.ref}
-            variants={fadeUp}
-          >
-            <h3>{satisfaction.count}%</h3>
-            <p>Client Satisfaction</p>
-          </motion.div>
-
-          <motion.div className="stat-box" variants={fadeUp}>
-            <h3>24/7</h3>
-            <p>Technical Support</p>
-          </motion.div>
         </motion.div>
-      </motion.div>
-    </section>
+      </section>
+
+      {/* STATS */}
+      <section className="stats-section">
+        <motion.div
+          className="stats-grid"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <motion.div className="stat-card" ref={clients.ref} variants={fadeUp}>
+            <div className="stat-number">{clients.count}+</div>
+            <div className="stat-label">Years Experience</div>
+          </motion.div>
+
+          <motion.div className="stat-card" ref={adSpend.ref} variants={fadeUp}>
+            <div className="stat-number">{adSpend.count}+</div>
+            <div className="stat-label">Events Managed</div>
+          </motion.div>
+
+          <motion.div className="stat-card" ref={roi.ref} variants={fadeUp}>
+            <div className="stat-number">{roi.count}+</div>
+            <div className="stat-label">Client Satisfaction</div>
+          </motion.div>
+
+          <motion.div className="stat-card" variants={fadeUp}>
+  <div className="stat-number">24/7</div>
+  <div className="stat-label">Technical Support</div>
+</motion.div>
+
+        </motion.div>
+      </section>
+    </>
   );
 };
 
