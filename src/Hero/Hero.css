@@ -1,11 +1,34 @@
+/* 🔥 PRELOAD HERO BACKGROUND (NO index.html needed) */
+body::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+
+  background-image: url("https://dkingdisplay.com/wp-content/uploads/2024/11/GIANT-RENTAL-LED-WALL-DISPLAY.webp");
+}
+.hero,
+.hero::before,
+.hero-overlay,
+.hero-content,
+.hero h1,
+.hero p,
+.hero-tag,
+.hero-actions {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
 .hero {
   height: 100vh;
   width: 100%;
   position: relative;
   background-image:
-      radial-gradient(circle at top, rgba(80,140,255,0.15), transparent 60%),
-    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-    url("./Hero Assets/image.jpeg");
+  linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+  radial-gradient(circle at top, rgba(80,140,255,0.15), transparent 60%),
+  url("https://dkingdisplay.com/wp-content/uploads/2024/11/GIANT-RENTAL-LED-WALL-DISPLAY.webp");
+
   background-size: cover;
   background-position: center bottom;   /* 🔥 IMAGE KILA PART VISIBLE */
   background-repeat: no-repeat;
@@ -15,6 +38,22 @@
   justify-content: center;              /* 🔥 FULL CENTER */
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.25)
+  );
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
 
 /* DARK OVERLAY */
 .hero-overlay {
@@ -61,11 +100,20 @@
 }
 
 .hero h1 span {
-  background: linear-gradient(90deg, #7f48d7, #7f48d7);
+  background: linear-gradient(90deg,#a077ff, #9870e9);
+  background-clip: text;
   -webkit-background-clip: text;
+  color: transparent;
   -webkit-text-fill-color: transparent;
-    font-family: 'Poppins', sans-serif;
+
+  font-weight: 800;
+  display: inline-block;
+  line-height: 1.1;
+
+  /* contrast boost */
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
 }
+
 
 /* TEXT */
 .hero p {
@@ -131,7 +179,9 @@
 .hero p,
 .hero-actions {
   animation: fadeUp 1.2s ease forwards;
+  animation-fill-mode: both;
 }
+
 /* make <a> behave exactly like button */
 a.btn {
   display: inline-flex;
@@ -169,14 +219,29 @@ a.btn:focus {
   }
 
   .hero h1 {
-    font-size: 50px;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+    
+
   }
   .hero p{
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 500;
   }
   .hero-tag{
-    font-size: 20px;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-family: 'Poppins', sans-serif;
+  color: #8c35dd;
+  background-color: #dfd2e8;
+  border-radius: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 60px;
   }
   .hero-actions {
     flex-direction: column;
@@ -190,6 +255,7 @@ a.btn:focus {
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
   border: none;
+  margin-top: 10px;
 }
 .btn.primary{
     background: linear-gradient(135deg, #633eba, #9870e9);

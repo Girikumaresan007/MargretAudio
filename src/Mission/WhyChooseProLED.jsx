@@ -69,7 +69,7 @@ const WhyChooseProLED = () => {
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: false, amount: 0.4 }}
           >
             <motion.span className="mission-tag" variants={fadeUp}>
               OUR MISSION
@@ -95,7 +95,7 @@ We are committed to precision planning, seamless execution, and operational reli
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
         >
           <motion.h2 className="why-title" variants={fadeUp}>
             Why Choose Us

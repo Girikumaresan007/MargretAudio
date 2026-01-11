@@ -48,7 +48,7 @@ const Services = () => {
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{ once: false, amount: 0.25 }}
       >
 
         {/* HEADER */}

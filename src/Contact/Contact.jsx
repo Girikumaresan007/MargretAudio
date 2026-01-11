@@ -31,7 +31,7 @@ const Contact = () => {
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
 
           {/* ================= INFO SIDE ================= */}

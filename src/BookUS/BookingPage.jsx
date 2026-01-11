@@ -87,7 +87,7 @@ const BookingPage = () => {
           variants={stagger}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
         >
           <motion.header className="form-header" variants={fadeUp}>
             <h1>Event Booking Request</h1>
@@ -229,7 +229,7 @@ const BookingPage = () => {
           variants={stagger}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           <motion.div className="help-box" variants={cardAnim}>
             <h4>Need Help?</h4>

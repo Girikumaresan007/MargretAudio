@@ -42,13 +42,14 @@ const About = () => {
     <>
       {/* STORY */}
       <section className="story-section" id="about">
-        <motion.div
-          className="story-content"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+       <motion.div
+      className="story-content"
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.3 }}
         >
+
           {/* TEXT */}
           <motion.div className="story-text" variants={container}>
             <motion.h3 variants={fadeUp}>ABOUT OUR AGENCY</motion.h3>
@@ -93,7 +94,7 @@ const About = () => {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           <motion.div className="stat-card" ref={clients.ref} variants={fadeUp}>
             <div className="stat-number">{clients.count}+</div>

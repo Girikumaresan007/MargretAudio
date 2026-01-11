@@ -187,8 +187,12 @@ scroll-margin-top: 2rem;
   }
 
   .packages-header p {
-    font-size: 28px;
+    font-size: 30px;
     line-height: 1.2;
+    font-weight: 800;
+   margin-bottom: 20px;
+    color: #000;
+    font-family: 'Poppins', sans-serif;
   }
 
   .amount {
@@ -198,5 +202,6 @@ scroll-margin-top: 2rem;
   .package-card {
     padding: 24px;
   }
+  
 }
 

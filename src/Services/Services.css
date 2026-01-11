@@ -148,7 +148,8 @@
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .services-title {
-    font-size: 32px;
+    font-size: 30px;
+    font-weight: 700px;
   }
 
   .services-section {
