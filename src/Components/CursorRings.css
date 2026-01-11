@@ -1,0 +1,24 @@
+/* src/components/CursorRings.css */
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+/* OUTER RING */
+.ring-0 {
+  border-width: 2px;
+}
+
+/* INNER / TAIL RING */
+.ring-1 {
+  border-width: 2px;
+}

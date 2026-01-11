@@ -1,0 +1,268 @@
+.contact-section {
+  padding: 120px 20px;
+  background: #000;
+ background: radial-gradient(circle at top,  #ffffff, #ffffff);
+color: #fff;
+scroll-margin-top: 1rem;
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 80px;
+}
+
+/* INFO */
+/* INFO SIDE */
+.contact-info h2 {
+  font-size: 46px;
+  font-weight: 900;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.contact-info h2 span {
+  color: #8041c9;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contact-subtext {
+  color: #000000;
+  font-size: 18px;
+  line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 48px;
+}
+
+/* INFO ITEMS */
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+    font-family: 'Poppins', sans-serif;
+  margin-bottom: 24px;
+}
+
+.info-icon {
+  width: 40px;          /* 🔥 small */
+  height: 40px;
+  background: #efeff1;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a855f7;
+}
+
+.info-icon svg {
+  width: 18px;          /* 🔥 icon size */
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.info-label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #71717a;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+}
+
+
+/* SOCIAL */
+.social-wrapper {
+  margin-top: 60px;
+}
+
+.social-title {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #000000;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+.social-icons {
+  display: flex;
+  gap: 24px;
+}
+
+.social-icon {
+  width: 48px;
+  height: 48px;
+  background: #d6d6dd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+  background: #401e7f;
+  color: white;
+}
+
+.social-icon:hover svg {
+  transform: scale(1.15);
+}
+/* ONLY instagram icon */
+.social-icon.instagram svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* inner shapes empty */
+.social-icon.instagram svg rect,
+.social-icon.instagram svg circle {
+  fill: none;
+}
+
+/* ONLY the small dot */
+.social-icon.instagram .ig-dot {
+  fill: currentColor;
+  stroke: none;
+}
+
+
+.contact-form-box {
+  background: #ffffff;
+  padding: 30px 30px 18px; /* 🔥 bottom reduced */
+  border-radius: 28px;
+  border: 1px solid #27272a;
+  align-self: start;
+}
+
+
+.contact-form-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+label {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+  color: #000000;
+  margin-bottom: 6px;
+  display: block;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 14px;
+  background: #fefcfc;
+  border: 1px solid #27272a;
+  border-radius: 12px;
+  color: #5a4e4e;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #9333ea;
+}
+button {
+  margin-top: 0;   /* 🔥 remove extra space */
+  background: #5a149c;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+button:hover {
+  background: #5c28a0;
+}
+/* ================= RESPONSE TIME CARD ================= */
+
+.response-time-card {
+  grid-column: 2 / 3; /* 👈 RIGHT SIDE COLUMN */
+  margin-top: -170px;
+  padding: 18px 10px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #751de1, #3c1162);
+  color: #ffffff;
+   align-self: start;
+}
+
+.response-time-card h4 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.response-time-card p {
+  margin: 2;
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.95;
+    font-family: 'Poppins', sans-serif;
+}
+
+.response-note {
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: 0.9;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 📱 MOBILE — FULL WIDTH BELOW */
+@media (max-width: 768px) {
+  .response-time-card {
+    grid-column: 1 / -1;
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .contact-info h2 {
+    font-size: 36px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

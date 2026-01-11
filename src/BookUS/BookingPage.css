@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #7254cd;
+  --primary-light: #3949ab;
+  --text-dark: #2c3e50;
+  --text-light: #000000;
+  --bg-body: #ffffff;
+  --white: #ffffff;
+  --border: #dcdde1;
+  --accent: #00d2ff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  
+    
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-dark);
+  
+}
+
+.booking-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+  scroll-margin-top: 4rem;
+
+}
+
+/* MAIN LAYOUT WRAPPER */
+.booking-content {
+  display: flex; /* This creates the side-by-side layout */
+  gap: 30px;
+  align-items: flex-start; /* Keeps sidebar from stretching to bottom */
+}
+
+/* LEFT SIDE: FORM SECTION */
+.form-section {
+  flex: 2; /* Takes up 2/3 of the space */
+  background: var(--white);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* RIGHT SIDE: SIDEBAR */
+.info-sidebar {
+  flex: 1; /* Takes up 1/3 of the space */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky; /* Optional: Makes sidebar stay visible while scrolling form */
+  top: 20px;
+}
+
+.form-header h1 {
+  font-size: 28px;
+  color: var(--primary);
+  margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-header p {
+  color: var(--text-light);
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+.input-group {
+  margin-bottom: 35px;
+}
+
+.input-group h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f1f1f1;
+  color: var(--primary);
+    font-family: 'Poppins', sans-serif;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.terms-container {
+  margin: 20px 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.checkbox-label input {
+  width: auto;
+}
+
+.submit-btn {
+  background: var(--primary);
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s;
+  font-family: 'Poppins', sans-serif;
+}
+/* 
+.submit-btn:hover {
+} */
+
+/* SIDEBAR BOX STYLING */
+.help-box, .whats-next-box {
+  background: var(--white);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+}
+
+.help-box h4, .whats-next-box h4 {
+  color: var(--primary);
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.help-box p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-light);
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contact-info p {
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  gap: 15px;
+}
+
+.step-num {
+  background: var(--primary);
+  color: white;
+  min-width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.step h6 {
+  font-size: 14px;
+  margin-bottom: 3px;
+   font-family: 'Poppins', sans-serif; 
+}
+
+.step p {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 992px) { /* Increased threshold slightly */
+  .booking-content {
+    flex-direction: column; /* Stack on mobile/tablets */
+  }
+  
+  .info-sidebar {
+    width: 100%;
+    order: 2; /* Moves sidebar back to bottom on mobile */
+    position: static; /* Removes sticky on mobile */
+  }
+
+  .grid-row {
+    grid-template-columns: 1fr;
+  }
+}
