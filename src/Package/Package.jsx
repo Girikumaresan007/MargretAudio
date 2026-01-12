@@ -1,8 +1,9 @@
 import React from "react";
 import "./Package.css";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-/* CONTAINER STAGGER */
+/* ------------------ Animations ------------------ */
 const container = {
   hidden: {},
   show: {
@@ -13,7 +14,6 @@ const container = {
   },
 };
 
-/* CARD ENTRY */
 const cardAnim = {
   hidden: { opacity: 0, y: 60, scale: 0.95 },
   show: {
@@ -27,7 +27,6 @@ const cardAnim = {
   },
 };
 
-/* FADE UP */
 const fadeUp = {
   hidden: { opacity: 0, y: 25 },
   show: {
@@ -41,6 +40,14 @@ const fadeUp = {
 };
 
 const Packages = () => {
+  const navigate = useNavigate();
+
+  const handleChoosePlan = (pkg) => {
+    navigate("/plan-details", {
+      state: { plan: pkg },
+    });
+  };
+
   return (
     <section id="packages" className="packages-section">
       <motion.div
@@ -50,12 +57,9 @@ const Packages = () => {
         whileInView="show"
         viewport={{ once: false, amount: 0.3 }}
       >
-        
         {/* HEADER */}
         <motion.div className="packages-header" variants={container}>
-          <motion.h2 variants={fadeUp}>
-            SERVICE PACKAGES
-          </motion.h2>
+          <motion.h2 variants={fadeUp}>SERVICE PACKAGES</motion.h2>
           <motion.p variants={fadeUp}>
             Tailored solutions to fit any scale and budget without compromising on quality.
           </motion.p>
@@ -73,16 +77,11 @@ const Packages = () => {
                 boxShadow: "0 30px 80px rgba(0,0,0,0.5)",
               }}
             >
-              {/* POPULAR BADGE */}
               {pkg.isPopular && (
                 <motion.div
                   className="popular-badge"
                   animate={{ scale: [1, 1.05, 1] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
                 >
                   Most Popular
                 </motion.div>
@@ -92,9 +91,6 @@ const Packages = () => {
 
               <motion.div className="price" variants={fadeUp}>
                 <span className="amount">{pkg.price}</span>
-                {pkg.price !== "Custom" && (
-                  <span className="unit"></span>
-                )}
               </motion.div>
 
               <motion.p className="description" variants={fadeUp}>
@@ -109,16 +105,26 @@ const Packages = () => {
                   </motion.li>
                 ))}
               </motion.ul>
+
+              {/* CHOOSE PLAN BUTTON */}
+              <motion.button
+                className="choose-btn"
+                variants={fadeUp}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => handleChoosePlan(pkg)}
+              >
+                Choose Plan
+              </motion.button>
             </motion.div>
           ))}
         </motion.div>
-
       </motion.div>
     </section>
   );
 };
 
-/* DATA */
+/* ------------------ DATA ------------------ */
 const PACKAGES = [
   {
     id: 1,
@@ -132,8 +138,8 @@ const PACKAGES = [
       "On-site technician",
       "Single High-Def Projector & Screen",
       "2 Wireless Handheld Mics",
-      "Setup & Strike included"
-    ]
+      "Setup & Strike included",
+    ],
   },
   {
     id: 2,
@@ -147,8 +153,8 @@ const PACKAGES = [
       "Dual 75 LED Displays or 12ft Wall",
       "Dedicated technician",
       "4 Wireless Mics (Lapel/Handheld)",
-      "Event Manager & Lead Tech (8h)"
-    ]
+      "Event Manager & Lead Tech (8h)",
+    ],
   },
   {
     id: 3,
@@ -162,25 +168,23 @@ const PACKAGES = [
       "Full Intelligent Light Show",
       "Multi-Camera Live Streaming",
       "Production Crew & Technical Director",
-      "Pre-event Visualization"
-    ]
+      "Pre-event Visualization",
+    ],
   },
-{
-  id: 4,
-  name: "Corporate",
-  price: "Custom",
-  description: "Professional AV solutions for corporate conferences.",
-  isPopular: false,
-  features: [
-    "High-Resolution LED Display Solutions",
-    "Professional PA & Conference Audio Systems",
-    "Intelligent & Architectural Lighting Setup",
-    "Multi-Camera Recording & Live Streaming",
-    "Dedicated Technical & Production Team",
-
-  ]
-}
-
+  {
+    id: 4,
+    name: "Corporate",
+    price: "Custom",
+    description: "Professional AV solutions for corporate conferences.",
+    isPopular: false,
+    features: [
+      "High-Resolution LED Display Solutions",
+      "Professional PA & Conference Audio Systems",
+      "Intelligent & Architectural Lighting Setup",
+      "Multi-Camera Recording & Live Streaming",
+      "Dedicated Technical & Production Team",
+    ],
+  },
 ];
 
 export default Packages;

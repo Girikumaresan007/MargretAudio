@@ -108,9 +108,10 @@ const BookingPage = () => {
                   <label>Select Package</label>
                   <select name="packageName" onChange={handleChange} required>
                     <option value="">Choose a Package</option>
-                    <option value="essential">Essential - Small Events</option>
-                    <option value="professional">Professional - Corporate</option>
+                    <option value="essential">Basic - Small Events</option>
+                    <option value="professional">Professional</option>
                     <option value="premium">Premium - Large Scale</option>
+                       <option value="premium">Corporate</option>
                   </select>
                 </motion.div>
 

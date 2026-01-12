@@ -1,45 +1,34 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import useReveal from "./useReveal";
 
 import CursorRings from "./Components/CursorRings";
-
-
 import Navbar from "./Navbar/Navbar";
 import Hero from "./Hero/Hero";
-import About1 from "./About1/About";
+import About from "./About/About";
+import WhyChooseProLED from "./Mission/WhyChooseProLED";
 import Services from "./Services/Services";
-import Youtube from "./Youtube/Youtube";
 import Testimonial from "./Testimonial/Testimonial";
 import Package from "./Package/Package";
+import Youtube from "./Youtube/Youtube";
 import Contact from "./Contact/Contact";
 import Footer from "./Footer/Footer";
-import WhyChooseProLED from "./Mission/WhyChooseProLED";
 import BookingPage from "./BookUS/BookingPage";
-import Gallery from "./Gallery/Gallery";
 import WhatsAppFloat from "./Whatapp/WhatsAppFloat";
-import AboutUs from "./AboutUS/AboutUs";
-import About from "./About/About";
+import PlanDetails from "./PlanDetails/PlanDetails"; // 👈 ADD
 
-
-
-
-function App() {
+function HomePage() {
   useReveal();
 
   return (
     <>
-      {/* CUSTOM CURSOR – ALL PAGES */}
       <CursorRings />
-
       <Navbar />
-    <WhatsAppFloat/>
+      <WhatsAppFloat />
       <Hero />
-      {/* <AboutUs/> */}
-      {/* <About1 /> */}
-      <About/>
-      <WhyChooseProLED/>
+      <About />
+      <WhyChooseProLED />
       <Services />
-      {/* <Gallery/> */}
       <Testimonial />
       <Package />
       <Youtube />
@@ -47,6 +36,18 @@ function App() {
       <BookingPage/>
       <Footer />
     </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/plan-details" element={<PlanDetails />} />
+        <Route path="/booking" element={<BookingPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

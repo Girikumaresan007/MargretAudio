@@ -6,7 +6,7 @@ scroll-margin-top: 2rem;
 }
 
 .packages-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: auto;
 }
 
@@ -178,6 +178,32 @@ scroll-margin-top: 2rem;
 
 .choose-btn.primary:hover {
   background: #7e22ce;
+}
+.package-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.choose-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #633eba, #9870e9);
+  transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;;
+}
+.choose-btn:hover{
+    background: linear-gradient(135deg,#9870e9, #633eba);
 }
 
 /* RESPONSIVE */
