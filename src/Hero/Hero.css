@@ -21,7 +21,8 @@ body::after {
 }
 
 .hero {
-  height: 100vh;
+ min-height: 100svh;   /* ✅ real visible mobile height */
+  height: auto;
   width: 100%;
   position: relative;
   background-image:
@@ -198,6 +199,13 @@ a.btn:focus {
   color: inherit;
   outline: none;
 }
+.hero {
+  overflow: hidden;
+}
+
+.hero-content {
+  overflow: visible;
+}
 
 
 /* ANIMATION */
@@ -272,4 +280,15 @@ a.btn:focus {
   }
 }
 
+}
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 90px;     /* ✅ prevents heading cut */
+    padding-bottom: 120px; /* ✅ prevents button cut */
+  }
+}
+@supports (height: 100dvh) {
+  .hero {
+    min-height: 100dvh;
+  }
 }

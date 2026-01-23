@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Services.css";
 import { SERVICES } from "./servicesData";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 /* ================= ANIMATION VARIANTS ================= */
 
@@ -40,27 +40,28 @@ const cardAnim = {
 };
 
 const Services = () => {
-  /* ✅ Detect mobile ONCE */
+  /* ✅ TRUE MOBILE DETECTION */
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth <= 768);
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
-  /* ✅ Real once-only trigger (works on iOS) */
-  const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, {
-    once: true,     // 🔥 REAL once
-    amount: 0.2,    // bottom 20%
-  });
-
   return (
-    <section className="services-section" id="services" ref={sectionRef}>
+    <section className="services-section" id="services">
       <motion.div
         className="services-container"
         variants={container}
         initial="hidden"
-        animate={isMobile ? (inView ? "show" : "hidden") : undefined}
+
+        /* 🔥 KEY FIX */
+        animate={isMobile ? "show" : undefined}
         whileInView={!isMobile ? "show" : undefined}
         viewport={!isMobile ? { amount: 0.2 } : undefined}
       >
@@ -87,6 +88,14 @@ const Services = () => {
               key={service.id}
               className="service-card"
               variants={cardAnim}
+              whileHover={
+                !isMobile
+                  ? {
+                      y: -8,
+                      boxShadow: "0 25px 60px rgba(0,0,0,0.45)",
+                    }
+                  : {}
+              }
             >
               <div className="service-overlay" />
 
@@ -100,7 +109,8 @@ const Services = () => {
 
               <motion.div
                 className="service-image"
-                whileHover={!isMobile ? { scale: 1.06 } : undefined}
+                whileHover={!isMobile ? { scale: 1.06 } : {}}
+                transition={{ duration: 0.5, ease: "easeOut" }}
               >
                 <img src={service.imageUrl} alt={service.title} />
               </motion.div>
