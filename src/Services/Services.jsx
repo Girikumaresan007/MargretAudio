@@ -3,6 +3,8 @@ import "./Services.css";
 import { SERVICES } from "./servicesData";
 import { motion } from "framer-motion";
 
+/* ================= ANIMATION VARIANTS ================= */
+
 /* Container stagger */
 const container = {
   hidden: {},
@@ -22,7 +24,7 @@ const fadeUp = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.22, 1, 0.36, 1], // premium easing
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -41,8 +43,9 @@ const cardAnim = {
 };
 
 const Services = () => {
-  // ✅ detect mobile (ONLY addition)
-  const isMobile = window.innerWidth <= 768;
+  /* 🔥 DEVICE DETECTION (CRITICAL FIX) */
+  const isSmallMobile =
+    window.innerWidth <= 375 || window.innerHeight <= 600; // iPhone SE safe
 
   return (
     <section className="services-section" id="services">
@@ -51,41 +54,29 @@ const Services = () => {
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: isMobile, amount: 0.25 }}
+        viewport={{
+          once: false,                     // animate only once (ALL devices)
+          amount: isSmallMobile ? 0.05 : 0.05, // 🔥 FIX blank screen on iPhone SE
+        }}
       >
-        {/* HEADER */}
-        <motion.div
-          className="services-header"
-          variants={container}
-        >
-          <motion.h2
-            className="services-tag"
-            variants={fadeUp}
-          >
+        {/* ================= HEADER ================= */}
+        <motion.div className="services-header" variants={container}>
+          <motion.h2 className="services-tag" variants={fadeUp}>
             OUR EXPERTISE
           </motion.h2>
 
-          <motion.h3
-            className="services-title"
-            variants={fadeUp}
-          >
+          <motion.h3 className="services-title" variants={fadeUp}>
             Comprehensive Event Services
           </motion.h3>
 
-          <motion.p
-            className="services-subtitle"
-            variants={fadeUp}
-          >
+          <motion.p className="services-subtitle" variants={fadeUp}>
             Tailored audio-visual and management solutions for every scale,
             ensuring your event stands out from the competition.
           </motion.p>
         </motion.div>
 
-        {/* GRID */}
-        <motion.div
-          className="services-grid"
-          variants={container}
-        >
+        {/* ================= GRID ================= */}
+        <motion.div className="services-grid" variants={container}>
           {SERVICES.map((service) => (
             <motion.div
               key={service.id}
@@ -96,19 +87,14 @@ const Services = () => {
                 boxShadow: "0 25px 60px rgba(0,0,0,0.45)",
               }}
             >
+              {/* Overlay (disabled on mobile via CSS) */}
               <div className="service-overlay"></div>
 
-              <motion.h4
-                className="service-name"
-                variants={fadeUp}
-              >
+              <motion.h4 className="service-name" variants={fadeUp}>
                 {service.title}
               </motion.h4>
 
-              <motion.p
-                className="service-desc"
-                variants={fadeUp}
-              >
+              <motion.p className="service-desc" variants={fadeUp}>
                 {service.description}
               </motion.p>
 
@@ -117,10 +103,7 @@ const Services = () => {
                 whileHover={{ scale: 1.06 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
               >
-                <img
-                  src={service.imageUrl}
-                  alt={service.title}
-                />
+                <img src={service.imageUrl} alt={service.title} />
               </motion.div>
             </motion.div>
           ))}
