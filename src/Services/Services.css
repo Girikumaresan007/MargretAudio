@@ -156,3 +156,11 @@
     padding: 80px 16px;
   }
 }
+/* ===== Mobile fix: remove black overlay ===== */
+@media (max-width: 768px) {
+  .service-overlay {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+}
+

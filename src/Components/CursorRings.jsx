@@ -36,22 +36,23 @@ const colorPalette = [
   const colorChangeInterval = 6000;
 
   /* 🔁 AUTO COLOR CHANGE */
-  useEffect(() => {
-    let colorIndex = 0;
+ useEffect(() => {
+  let colorIndex = 0;
 
-    const changeColors = () => {
-      colorIndex = (colorIndex + 1) % colorPalette.length;
+  const changeColors = () => {
+    colorIndex = (colorIndex + 1) % colorPalette.length;
 
-      ringRefs.current.forEach((ring, i) => {
-        if (!ring) return;
-        const alpha = i === 0 ? 0.7 : 0.4;
-        ring.style.borderColor = colorPalette[colorIndex].replace("0.7", alpha);
-      });
-    };
+    ringRefs.current.forEach((ring, i) => {
+      if (!ring) return;
+      const alpha = i === 0 ? 0.7 : 0.4;
+      ring.style.borderColor = colorPalette[colorIndex].replace("0.7", alpha);
+    });
+  };
 
-    const timer = setInterval(changeColors, colorChangeInterval);
-    return () => clearInterval(timer);
-  }, []);
+  const timer = setInterval(changeColors, colorChangeInterval);
+  return () => clearInterval(timer);
+}, [colorPalette]);
+
 
   /* 🖱️ MOUSE + ANIMATION */
   useEffect(() => {
@@ -123,7 +124,7 @@ const colorPalette = [
     animate();
 
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [speeds, spacing]);
 
   return (
     <>
