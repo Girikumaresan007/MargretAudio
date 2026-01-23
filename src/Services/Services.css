@@ -163,4 +163,27 @@
     pointer-events: none;
   }
 }
+/* ================================
+   MOBILE FIX – SERVICES SECTION
+   ================================ */
+
+@media (max-width: 768px) {
+  .service-card {
+    background: transparent;
+  }
+
+  .service-overlay {
+    display: none !important;   /* 🔥 MAIN FIX */
+  }
+
+  .service-card img {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+  }
+}
+.service-card:hover .service-overlay {
+  opacity: 1;
+}
+
 
