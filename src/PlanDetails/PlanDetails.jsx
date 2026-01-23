@@ -112,18 +112,18 @@ const PlanDetails = () => {
         {/* LEFT */}
         <div>
           <a
-            href="#"
-            className="back"
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("/");
-              setTimeout(() => {
-                document.getElementById("packages")?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }, 300);
-            }}
-          >
+       href="/#packages"
+       className="back"
+       onClick={(e) => {
+      e.preventDefault();
+      navigate("/");
+       setTimeout(() => {
+        document.getElementById("packages")?.scrollIntoView({
+        behavior: "smooth",
+        });
+      }, 300);
+       }}
+         >
             ← Back to Packages
           </a>
 

@@ -1,5 +1,5 @@
 // src/components/CursorRings.jsx
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import "./CursorRings.css";
 
 const CursorRings = () => {
@@ -10,8 +10,7 @@ const CursorRings = () => {
   ]);
 
   // SPEED CONTROL
-  const speeds = [0.03, 0.02];
-
+ const speeds = useMemo(() => [0.03, 0.02], []);
   // SPACING CONTROL
   const spacing = 160;
 
@@ -25,13 +24,15 @@ const CursorRings = () => {
   const isMoving = useRef(false);
   const idleTimeout = useRef(null);
 
-const colorPalette = [
-  "rgba(138, 43, 226, 0.7)", // Blue Violet
-  "rgba(186, 85, 211, 0.7)", // Medium Orchid
-  "rgba(148, 0, 211, 0.7)",  // Dark Violet
-  "rgba(221, 160, 221, 0.7)", // Plum
-];
-
+const colorPalette = useMemo(
+    () => [
+      "rgba(138, 43, 226, 0.7)",
+      "rgba(186, 85, 211, 0.7)",
+      "rgba(148, 0, 211, 0.7)",
+      "rgba(221, 160, 221, 0.7)",
+    ],
+    []
+  );
 
   const colorChangeInterval = 6000;
 
