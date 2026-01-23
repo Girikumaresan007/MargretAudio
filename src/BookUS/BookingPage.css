@@ -237,3 +237,41 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+/* ================= MOBILE FIXES ONLY ================= */
+@media (max-width: 768px) {
+
+  /* ✅ Fix checkbox alignment & text wrapping */
+  .checkbox-label {
+    align-items: flex-start;   /* aligns checkbox with first line */
+    gap: 8px;
+    line-height: 1.4;
+  }
+
+  .checkbox-label input {
+    margin-top: 3px;           /* visually centers checkbox */
+  }
+
+  .checkbox-label span {
+    font-size: 13px;           /* slightly smaller text */
+  }
+
+  /* ✅ Make submit button smaller & cleaner on mobile */
+  .submit-btn {
+    padding: 12px 20px;        /* reduce height */
+    font-size: 14px;           /* smaller text */
+    border-radius: 6px;        /* softer mobile look */
+  }
+}
+
+/* EXTRA SMALL PHONES (Realme / Redmi / iPhone SE) */
+@media (max-width: 420px) {
+
+  .checkbox-label span {
+    font-size: 12.5px;
+  }
+
+  .submit-btn {
+    font-size: 13.5px;
+    padding: 11px 18px;
+  }
+}
