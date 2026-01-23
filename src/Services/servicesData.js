@@ -64,9 +64,9 @@ export const SERVICES = [
   },
    {
     id: 7,
-    title: "Trade Exhibition",
+    title: "College Event",
     description:
-      "Creative stage concepts and dynamic lighting designs that elevate the visual experience of your event.",
+      "Creative stage concepts and dynamic lighting designs tailored to energize college festivals, cultural programs, symposiums, and campus celebrations.",
     imageUrl:
     Assets6,
     icon: "lighting"

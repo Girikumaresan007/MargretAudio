@@ -59,6 +59,9 @@ const features = [
 ];
 
 const WhyChooseProLED = () => {
+  // ✅ detect mobile (ONLY addition)
+  const isMobile = window.innerWidth <= 768;
+
   return (
     <>
       {/* ================= MISSION SECTION ================= */}
@@ -69,7 +72,7 @@ const WhyChooseProLED = () => {
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: false, amount: 0.4 }}
+            viewport={{ once: isMobile, amount: 0.4 }}
           >
             <motion.span className="mission-tag" variants={fadeUp}>
               OUR MISSION
@@ -80,9 +83,12 @@ const WhyChooseProLED = () => {
             </motion.h1>
 
             <motion.p className="mission-text" variants={fadeUp}>
-             Our mission is to deliver professionally managed, high-impact event solutions for political, corporate, and large-scale public events.
-We specialize in advanced LED and audiovisual technologies to enhance visibility and audience engagement.
-We are committed to precision planning, seamless execution, and operational reliability.
+              Our mission is to deliver professionally managed, high-impact event
+              solutions for political, corporate, and large-scale public events.
+              We specialize in advanced LED and audiovisual technologies to
+              enhance visibility and audience engagement. We are committed to
+              precision planning, seamless execution, and operational
+              reliability.
             </motion.p>
           </motion.div>
         </div>
@@ -95,7 +101,7 @@ We are committed to precision planning, seamless execution, and operational reli
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: isMobile, amount: 0.3 }}
         >
           <motion.h2 className="why-title" variants={fadeUp}>
             Why Choose Us

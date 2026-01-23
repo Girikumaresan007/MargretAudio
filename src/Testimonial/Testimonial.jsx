@@ -1,132 +1,161 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import "./Testimonial.css";
 import { TESTIMONIALS } from "./testimonialsData";
-import { motion } from "framer-motion";
 
-/* Container stagger */
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.18,
-      delayChildren: 0.2,
-    },
-  },
-};
+const AUTO_DELAY = 3500;
 
-/* Fade + rise */
-const fadeUp = {
+/* 🔥 Framer Motion Variants */
+const sectionAnim = {
   hidden: { opacity: 0, y: 40 },
   show: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1], // 🔥 premium easing
-    },
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
-/* Card animation */
 const cardAnim = {
-  hidden: { opacity: 0, y: 60, scale: 0.95 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.9,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
-/* Avatar pop */
-const avatarAnim = {
-  hidden: { opacity: 0, scale: 0.6 },
+  hidden: { opacity: 0, scale: 0.95 },
   show: {
     opacity: 1,
     scale: 1,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 
 const Testimonials = () => {
+  const [index, setIndex] = useState(1);
+  const [cardsPerView, setCardsPerView] = useState(3);
+  const [transition, setTransition] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  /* RESPONSIVE */
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setCardsPerView(mobile ? 1 : 3);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  /* AUTOPLAY – DESKTOP ONLY */
+  useEffect(() => {
+    if (isMobile) return;
+
+    const timer = setInterval(() => {
+      setIndex((prev) => prev + 1);
+      setTransition(true);
+    }, AUTO_DELAY);
+
+    return () => clearInterval(timer);
+  }, [isMobile]);
+
+  /* CLONE LOGIC */
+  const cloneCount = cardsPerView;
+  const firstCards = TESTIMONIALS.slice(0, cloneCount);
+  const lastCards = TESTIMONIALS.slice(-cloneCount);
+  const items = [...lastCards, ...TESTIMONIALS, ...firstCards];
+
+  /* ✅ TRANSLATE LOGIC */
+  const gap = isMobile ? 20 : 30;
+  const cardWidthPercent = 100 / cardsPerView;
+  const translateX = `-${index * cardWidthPercent}%`;
+
+  const handleTransitionEnd = () => {
+    if (index >= TESTIMONIALS.length + cloneCount) {
+      setTransition(false);
+      setIndex(cloneCount);
+    } else if (index <= 0) {
+      setTransition(false);
+      setIndex(TESTIMONIALS.length);
+    }
+  };
+
+  useEffect(() => {
+    if (!transition) {
+      const t = setTimeout(() => setTransition(true), 50);
+      return () => clearTimeout(t);
+    }
+  }, [transition]);
+
+  /* MANUAL CONTROLS */
+  const handlePrev = () => {
+    setTransition(true);
+    setIndex((i) => i - 1);
+  };
+
+  const handleNext = () => {
+    setTransition(true);
+    setIndex((i) => i + 1);
+  };
+
   return (
-    <section id="testimonials" className="testimonials-section">
-      <motion.div
-        className="testimonials-container"
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.25 }}
-      >
+    <motion.section
+      id="testimonials"
+      className="testimonials-section"
+      variants={sectionAnim}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: isMobile, amount: 0.2 }}   // ✅ ONLY CHANGE
+    >
+      <div className="testimonials-container">
+        <div className="testimonials-header">
+          <h2>CLIENT FEEDBACK</h2>
+          <p>Trusted by world-leading brands globally.</p>
+        </div>
 
-        {/* HEADER */}
-        <motion.div
-          className="testimonials-header"
-          variants={container}
-        >
-          <motion.h2 variants={fadeUp}>
-            CLIENT FEEDBACK
-          </motion.h2>
+        <div className="carousel-wrapper">
+          <button className="nav-btn left" onClick={handlePrev}>
+            ‹
+          </button>
 
-          <motion.p variants={fadeUp}>
-            Trusted by world-leading brands and event planners globally.
-          </motion.p>
-        </motion.div>
-
-        {/* GRID */}
-        <motion.div
-          className="testimonials-grid"
-          variants={container}
-        >
-          {TESTIMONIALS.map((t) => (
+          <div className="carousel-viewport">
             <motion.div
-              key={t.id}
-              className="testimonial-card"
-              variants={cardAnim}
-              whileHover={{
-                y: -10,
-                boxShadow: "0 30px 70px rgba(0,0,0,0.3)",
-              }}
+              className="carousel-track"
+              animate={{ x: translateX }}
+              transition={
+                transition
+                  ? { ease: "easeInOut", duration: 0.6 }
+                  : { duration: 0 }
+              }
+              onAnimationComplete={handleTransitionEnd}
             >
-              {/* AVATAR */}
-              <motion.img
-                src={t.image}
-                alt={t.author}
-                className="testimonial-avatar"
-                variants={avatarAnim}
-              />
-
-              {/* TEXT */}
-              <motion.p
-                className="testimonial-text"
-                variants={fadeUp}
-              >
-                <span className="quote top">“</span>
-                {t.content}
-                <span className="quote bottom">”</span>
-              </motion.p>
-
-              {/* AUTHOR */}
-              <motion.div
-                className="testimonial-author"
-                variants={fadeUp}
-              >
-                <h4>{t.author}</h4>
-                <p>{t.role}</p>
-              </motion.div>
-
+              {items.map((t, i) => (
+                <motion.div
+                  key={i}
+                  className="testimonial-card"
+                  variants={cardAnim}
+                  initial="hidden"
+                  animate="show"
+                  style={{
+                    minWidth: `calc(${cardWidthPercent}% - ${
+                      (gap * (cardsPerView - 1)) / cardsPerView
+                    }px)`,
+                    flex: `0 0 calc(${cardWidthPercent}% - ${
+                      (gap * (cardsPerView - 1)) / cardsPerView
+                    }px)`,
+                  }}
+                >
+                  <img src={t.image} alt={t.author} />
+                  <p className="text">“{t.content}”</p>
+                  <h4>{t.author}</h4>
+                  <span>{t.role}</span>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
+          </div>
 
-      </motion.div>
-    </section>
+          <button className="nav-btn right" onClick={handleNext}>
+            ›
+          </button>
+        </div>
+      </div>
+    </motion.section>
   );
 };
 

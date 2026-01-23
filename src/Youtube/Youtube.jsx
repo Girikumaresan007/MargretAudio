@@ -41,6 +41,9 @@ const videoAnim = {
 };
 
 const Youtube = () => {
+  // ✅ detect mobile (ONLY addition)
+  const isMobile = window.innerWidth <= 768;
+
   return (
     <section id="video" className="video-section">
       <motion.div
@@ -48,14 +51,10 @@ const Youtube = () => {
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: isMobile, amount: 0.3 }}
       >
-
         {/* HEADER */}
-        <motion.div
-          className="video-header"
-          variants={container}
-        >
+        <motion.div className="video-header" variants={container}>
           <motion.h2 variants={fadeUp}>
             PRODUCTION SHOWCASE
           </motion.h2>
@@ -67,10 +66,7 @@ const Youtube = () => {
         </motion.div>
 
         {/* VIDEO GRID */}
-        <motion.div
-          className="video-grid"
-          variants={container}
-        >
+        <motion.div className="video-grid" variants={container}>
           {/* VIDEO 1 */}
           <motion.div
             className="video-wrapper"
@@ -105,7 +101,6 @@ const Youtube = () => {
             />
           </motion.div>
         </motion.div>
-
       </motion.div>
     </section>
   );

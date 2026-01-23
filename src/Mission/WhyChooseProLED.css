@@ -109,7 +109,7 @@
   background: #ffffff;
   padding: 36px;
   border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(152, 138, 255, 0.3);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -146,6 +146,63 @@
   font-size: 16px;
   line-height: 1.7;
   color: #4b5563;
+  font-family: "Poppins", sans-serif;
+}
+/* ================= OPTION 6: DUAL LAYER REVEAL ================= */
+
+.why-card {
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Inner background layer */
+.why-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #8a64e9; /* brand / accent color */
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+/* Keep content above layer */
+.why-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover activation */
+.why-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 52px rgba(0, 0, 0, 0.22);
+}
+
+.why-card:hover::after {
+  transform: scaleY(1);
+}
+
+/* Text adapts */
+.why-card h3,
+.why-card p {
+  transition: color 0.35s ease;
+}
+
+.why-card:hover h3,
+.why-card:hover p {
+  color: #ffffff;
+}
+
+/* Accent line integrates */
+.why-card::before {
+  transition: opacity 0.35s ease;
+}
+
+.why-card:hover::before {
+  opacity: 0.35;
 }
 
 /* ================================================= */

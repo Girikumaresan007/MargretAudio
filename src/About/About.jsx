@@ -33,23 +33,24 @@ const imageAnim = {
 /* ------------------------------------------------ */
 
 const About = () => {
+  // ✅ detect mobile
+  const isMobile = window.innerWidth <= 768;
+
   const clients = useCountUpOnView(10);
   const adSpend = useCountUpOnView(1000);
   const roi = useCountUpOnView(98);
-  const retention = useCountUpOnView(24/7);
 
   return (
     <>
       {/* STORY */}
       <section className="story-section" id="about">
-       <motion.div
-      className="story-content"
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: false, amount: 0.3 }}
+        <motion.div
+          className="story-content"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: isMobile, amount: 0.3 }}
         >
-
           {/* TEXT */}
           <motion.div className="story-text" variants={container}>
             <motion.h3 variants={fadeUp}>ABOUT OUR AGENCY</motion.h3>
@@ -61,29 +62,31 @@ const About = () => {
             </motion.h2>
 
             <motion.p variants={fadeUp}>
-             Margret Audio Visual is a full-service event management and technical production agency 
-             specializing in high-impact LED wall solutions for events of all sizes.
+              Margret Audio Visual is a full-service event management and
+              technical production agency specializing in high-impact LED wall
+              solutions for events of all sizes.
             </motion.p>
 
             <motion.p variants={fadeUp}>
-             We provide professional LED wall rentals for corporate and live events, 
-             backed by award-winning creative direction and expert technical execution.
+              We provide professional LED wall rentals for corporate and live
+              events, backed by award-winning creative direction and expert
+              technical execution.
             </motion.p>
 
             <motion.p variants={fadeUp}>
-            With experienced on-site support and end-to-end event logistics,
-             we ensure seamless, reliable, and visually powerful event experiences.
+              With experienced on-site support and end-to-end event logistics,
+              we ensure seamless, reliable, and visually powerful event
+              experiences.
             </motion.p>
           </motion.div>
 
           {/* IMAGE */}
-         <motion.div className="story-image" variants={imageAnim}>
-         <img
-          src="https://4.imimg.com/data4/VH/CO/MY-19253486/event-management-services.jpg"
-          alt="Our Team"
-         />
-</motion.div>
-
+          <motion.div className="story-image" variants={imageAnim}>
+            <img
+              src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/e5f3f283888617.5d4a62085e976.jpg"
+              alt="Our Team"
+            />
+          </motion.div>
         </motion.div>
       </section>
 
@@ -94,7 +97,7 @@ const About = () => {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false }}
+          viewport={{ once: isMobile }}
         >
           <motion.div className="stat-card" ref={clients.ref} variants={fadeUp}>
             <div className="stat-number">{clients.count}+</div>
@@ -112,10 +115,9 @@ const About = () => {
           </motion.div>
 
           <motion.div className="stat-card" variants={fadeUp}>
-  <div className="stat-number">24/7</div>
-  <div className="stat-label">Technical Support</div>
-</motion.div>
-
+            <div className="stat-number">24/7</div>
+            <div className="stat-label">Technical Support</div>
+          </motion.div>
         </motion.div>
       </section>
     </>

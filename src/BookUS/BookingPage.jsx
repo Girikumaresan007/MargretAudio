@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./BookingPage.css";
 import { motion } from "framer-motion";
 
@@ -56,6 +56,22 @@ const BookingPage = () => {
     company: "",
     agreeTerms: false,
   });
+   const isMobile = window.innerWidth <= 768;
+  /* 🔥 AUTO-FILL PACKAGE FROM PLAN DETAILS */
+  useEffect(() => {
+  const savedPlan = localStorage.getItem("selectedPlan");
+
+  if (savedPlan) {
+    setFormData((prev) => ({
+      ...prev,
+      packageName: savedPlan,
+    }));
+
+    // 🔥 IMPORTANT: remove after using once
+    localStorage.removeItem("selectedPlan");
+  }
+}, []);
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -65,11 +81,67 @@ const BookingPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Submitted:", formData);
-    alert("Thank you! Your booking request has been sent.");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // 🔁 map camelCase → snake_case
+  const payload = {
+    package_name: formData.packageName,
+    event_date: formData.eventDate,
+    event_location: formData.eventLocation,
+    event_type: formData.eventType,
+    attendees: formData.attendees,
+    requirements: formData.requirements,
+    full_name: formData.fullName,
+    email: formData.email,
+    phone: formData.phone,
+    company: formData.company, 
+    agree_terms :formData.agreeTerms
   };
+
+  try {
+    const res = await fetch(
+      "http://127.0.0.1:8000/new_form/create/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    if (!res.ok) {
+      const err = await res.json();
+      console.error("Backend error:", err);
+      alert("Submission failed");
+      return;
+    }
+
+    alert("Booking request sent successfully!");
+
+    // clear form
+    setFormData({
+      packageName: "",
+      eventDate: "",
+      eventLocation: "",
+      eventType: "",
+      attendees: "",
+      requirements: "",
+      fullName: "",
+      email: "",
+      phone: "",
+      company: "",
+      agreeTerms: false,
+    });
+
+  } catch (err) {
+    console.error(err);
+    alert("Submission failed");
+  }
+};
+
+
 
   return (
     <motion.div
@@ -106,18 +178,29 @@ const BookingPage = () => {
               <div className="grid-row">
                 <motion.div className="field" variants={fadeUp}>
                   <label>Select Package</label>
-                  <select name="packageName" onChange={handleChange} required>
+                  <select
+                    name="packageName"
+                    value={formData.packageName}
+                    onChange={handleChange}
+                    required
+                  >
                     <option value="">Choose a Package</option>
-                    <option value="essential">Basic - Small Events</option>
-                    <option value="professional">Professional</option>
-                    <option value="premium">Premium - Large Scale</option>
-                       <option value="premium">Corporate</option>
+                    <option value="Basic">Basic - Small Events</option>
+                    <option value="Professional">Professional</option>
+                    <option value="Premium">Premium - Large Scale</option>
+                    <option value="Corporate">Corporate</option>
                   </select>
                 </motion.div>
 
                 <motion.div className="field" variants={fadeUp}>
                   <label>Event Date</label>
-                  <input type="date" name="eventDate" onChange={handleChange} required />
+                  <input
+                    type="date"
+                    name="eventDate"
+                    value={formData.eventDate}
+                    onChange={handleChange}
+                    required
+                  />
                 </motion.div>
               </div>
 
@@ -127,6 +210,7 @@ const BookingPage = () => {
                   type="text"
                   name="eventLocation"
                   placeholder="Venue Name or Address"
+                  value={formData.eventLocation}
                   onChange={handleChange}
                   required
                 />
@@ -135,7 +219,12 @@ const BookingPage = () => {
               <div className="grid-row">
                 <motion.div className="field" variants={fadeUp}>
                   <label>Event Type</label>
-                  <select name="eventType" onChange={handleChange} required>
+                  <select
+                    name="eventType"
+                    value={formData.eventType}
+                    onChange={handleChange}
+                    required
+                  >
                     <option value="">Select Type</option>
                     <option value="corporate">Corporate Gala</option>
                     <option value="wedding">Wedding</option>
@@ -150,6 +239,7 @@ const BookingPage = () => {
                     type="number"
                     name="attendees"
                     placeholder="Expected Count"
+                    value={formData.attendees}
                     onChange={handleChange}
                     required
                   />
@@ -161,6 +251,7 @@ const BookingPage = () => {
                 <textarea
                   name="requirements"
                   placeholder="Tell us about any specific AV, catering, or decor needs..."
+                  value={formData.requirements}
                   onChange={handleChange}
                 ></textarea>
               </motion.div>
@@ -173,24 +264,56 @@ const BookingPage = () => {
               <div className="grid-row">
                 <motion.div className="field" variants={fadeUp}>
                   <label>Full Name</label>
-                  <input type="text" name="fullName" placeholder="John Doe" onChange={handleChange} required />
+                  <input
+                    type="text"
+                    name="fullName"
+                    placeholder="John Doe"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
+                  />
                 </motion.div>
 
                 <motion.div className="field" variants={fadeUp}>
                   <label>Email Address</label>
-                  <input type="email" name="email" placeholder="john@example.com" onChange={handleChange} required />
+               <input
+  type="email"
+  name="email"
+  placeholder="john@example.com"
+  value={formData.email}
+  onChange={handleChange}
+  required
+/>
+
                 </motion.div>
               </div>
 
               <div className="grid-row">
                 <motion.div className="field" variants={fadeUp}>
                   <label>Phone Number</label>
-                  <input type="tel" name="phone" placeholder="+1 (555) 000-0000" onChange={handleChange} required />
+                 <input
+  type="tel"
+  name="phone"
+  placeholder="9876543210"
+  value={formData.phone}
+  onChange={handleChange}
+  required
+  pattern="[0-9]{10}"     
+  maxLength={10}
+  title="Enter a valid 10-digit phone number"
+/>
+
                 </motion.div>
 
                 <motion.div className="field" variants={fadeUp}>
                   <label>Company / Organization</label>
-                  <input type="text" name="company" placeholder="Optional" onChange={handleChange} />
+                  <input
+                    type="text"
+                    name="company"
+                    placeholder="Optional"
+                    value={formData.company}
+                    onChange={handleChange}
+                  />
                 </motion.div>
               </div>
             </motion.section>
@@ -230,11 +353,13 @@ const BookingPage = () => {
           variants={stagger}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false }}
+        viewport={{ once: isMobile }}
         >
           <motion.div className="help-box" variants={cardAnim}>
             <h4>Need Help?</h4>
-            <p>Not sure which package fits your event? Our coordinators are here to assist you.</p>
+            <p>
+              Not sure which package fits your event? Our coordinators are here to assist you.
+            </p>
             <div className="contact-info">
               <p><strong>📞 Phone:</strong> +1 (800) EVENT-PRO</p>
               <p><strong>📧 Email:</strong> support@eventmanage.com</p>

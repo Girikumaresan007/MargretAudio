@@ -42,6 +42,9 @@ const fadeUp = {
 const Packages = () => {
   const navigate = useNavigate();
 
+  // ✅ detect mobile (ONLY addition)
+  const isMobile = window.innerWidth <= 768;
+
   const handleChoosePlan = (pkg) => {
     navigate("/plan-details", {
       state: { plan: pkg },
@@ -55,13 +58,14 @@ const Packages = () => {
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: isMobile, amount: 0.3 }}
       >
         {/* HEADER */}
         <motion.div className="packages-header" variants={container}>
           <motion.h2 variants={fadeUp}>SERVICE PACKAGES</motion.h2>
           <motion.p variants={fadeUp}>
-            Tailored solutions to fit any scale and budget without compromising on quality.
+            Tailored solutions to fit any scale and budget without compromising
+            on quality.
           </motion.p>
         </motion.div>
 

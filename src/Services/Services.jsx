@@ -41,6 +41,9 @@ const cardAnim = {
 };
 
 const Services = () => {
+  // ✅ detect mobile (ONLY addition)
+  const isMobile = window.innerWidth <= 768;
+
   return (
     <section className="services-section" id="services">
       <motion.div
@@ -48,9 +51,8 @@ const Services = () => {
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.25 }}
+        viewport={{ once: isMobile, amount: 0.25 }}
       >
-
         {/* HEADER */}
         <motion.div
           className="services-header"
@@ -120,11 +122,9 @@ const Services = () => {
                   alt={service.title}
                 />
               </motion.div>
-
             </motion.div>
           ))}
         </motion.div>
-
       </motion.div>
     </section>
   );

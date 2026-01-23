@@ -14,6 +14,7 @@ body {
 .story-section {
   padding: 80px 20px;
   background: white;
+    scroll-margin-top: 1rem;
 }
 
 .story-content {
