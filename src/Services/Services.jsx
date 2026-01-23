@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Services.css";
 import { SERVICES } from "./servicesData";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 /* ================= ANIMATION VARIANTS ================= */
 
-/* Container stagger */
 const container = {
   hidden: {},
   show: {
@@ -16,7 +15,6 @@ const container = {
   },
 };
 
-/* Fade + slide up */
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   show: {
@@ -29,7 +27,6 @@ const fadeUp = {
   },
 };
 
-/* Card animation */
 const cardAnim = {
   hidden: { opacity: 0, y: 50 },
   show: {
@@ -43,21 +40,29 @@ const cardAnim = {
 };
 
 const Services = () => {
-  /* 🔥 DEVICE DETECTION (CRITICAL FIX) */
-  const isSmallMobile =
-    window.innerWidth <= 375 || window.innerHeight <= 600; // iPhone SE safe
+  /* ✅ Detect mobile ONCE */
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
+  /* ✅ Real once-only trigger (works on iOS) */
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, {
+    once: true,     // 🔥 REAL once
+    amount: 0.2,    // bottom 20%
+  });
 
   return (
-    <section className="services-section" id="services">
+    <section className="services-section" id="services" ref={sectionRef}>
       <motion.div
         className="services-container"
         variants={container}
         initial="hidden"
-        whileInView="show"
-        viewport={{
-          once: false,                     // animate only once (ALL devices)
-          amount: isSmallMobile ? 0.05 : 0.05, // 🔥 FIX blank screen on iPhone SE
-        }}
+        animate={isMobile ? (inView ? "show" : "hidden") : undefined}
+        whileInView={!isMobile ? "show" : undefined}
+        viewport={!isMobile ? { amount: 0.2 } : undefined}
       >
         {/* ================= HEADER ================= */}
         <motion.div className="services-header" variants={container}>
@@ -82,13 +87,8 @@ const Services = () => {
               key={service.id}
               className="service-card"
               variants={cardAnim}
-              whileHover={{
-                y: -8,
-                boxShadow: "0 25px 60px rgba(0,0,0,0.45)",
-              }}
             >
-              {/* Overlay (disabled on mobile via CSS) */}
-              <div className="service-overlay"></div>
+              <div className="service-overlay" />
 
               <motion.h4 className="service-name" variants={fadeUp}>
                 {service.title}
@@ -100,8 +100,7 @@ const Services = () => {
 
               <motion.div
                 className="service-image"
-                whileHover={{ scale: 1.06 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                whileHover={!isMobile ? { scale: 1.06 } : undefined}
               >
                 <img src={service.imageUrl} alt={service.title} />
               </motion.div>
