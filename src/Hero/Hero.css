@@ -292,3 +292,92 @@ a.btn:focus {
     min-height: 100dvh;
   }
 }
+/* ================= MOBILE ONLY FIX ================= */
+@media (max-width: 768px) {
+
+  /* Prevent top + bottom cut */
+  .hero {
+    padding-top: 90px;
+    padding-bottom: 140px;
+  }
+
+  /* Reduce heading height safely */
+  .hero h1 {
+    font-size: 38px;
+    line-height: 1.15;
+  }
+
+  /* Paragraph spacing control */
+  .hero p {
+    font-size: 15px;
+    margin-top: 16px;
+  }
+
+  /* Ensure button is always visible */
+  .hero-actions {
+    margin-top: 24px;
+  }
+
+  /* Button size stays touch-friendly */
+  .btn {
+    padding: 14px 32px;
+  }
+}
+
+/* EXTRA SMALL PHONES (Realme / Redmi / iPhone SE) */
+@media (max-width: 420px) {
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero {
+    padding-bottom: 160px;
+  }
+}
+/* ================= MOBILE BUTTON FIX ================= */
+@media (max-width: 768px) {
+
+  /* Force safe vertical layout */
+  .hero-content {
+    justify-content: flex-start;
+  }
+
+  /* Reduce text pressure slightly */
+  .hero h1 {
+    font-size: 36px;
+    line-height: 1.15;
+  }
+
+  .hero p {
+    font-size: 15px;
+    margin-top: 14px;
+  }
+
+  /* 🔥 GUARANTEE BUTTON VISIBILITY */
+  .hero-actions {
+    margin-top: 24px;
+    padding-bottom: 40px;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* EXTRA SMALL PHONES (Realme / Redmi / iPhone SE) */
+@media (max-width: 420px) {
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero {
+    padding-bottom: 180px; /* 🔥 ensures button never cuts */
+  }
+
+  .hero-actions .btn {
+    max-width: 260px;
+  }
+}
