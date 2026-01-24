@@ -144,3 +144,119 @@
     font-size: 28px;
   }
 }
+/* ================= TABLET TESTIMONIALS ================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .testimonials-section {
+    padding: 80px 0;
+  }
+
+  .testimonials-container {
+    max-width: 900px;
+    padding: 0 24px;
+  }
+
+  .testimonials-header {
+    margin-bottom: 50px;
+  }
+
+  .testimonials-header p {
+    font-size: 32px;
+  }
+
+  .carousel-track {
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    padding: 28px 20px;
+    border-radius: 22px;
+  }
+
+  .testimonial-card .text {
+    font-size: 15px;
+  }
+
+  /* bring arrows closer on tablet */
+  .nav-btn.left {
+    left: -36px;
+  }
+
+  .nav-btn.right {
+    right: -36px;
+  }
+}
+/* ================= DESKTOP TESTIMONIALS ================= */
+@media (min-width: 1025px) and (max-width: 1440px) {
+
+  .testimonials-section {
+    padding: 100px 0;
+  }
+
+  .testimonials-container {
+    max-width: 1200px;
+    padding: 0 30px;
+  }
+
+  .testimonials-header p {
+    font-size: 36px;
+  }
+
+  .carousel-track {
+    gap: 30px;
+  }
+
+  .testimonial-card {
+    padding: 32px 24px;
+  }
+
+  .testimonial-card .text {
+    font-size: 16px;
+  }
+
+  .nav-btn.left {
+    left: -52px;
+  }
+
+  .nav-btn.right {
+    right: -52px;
+  }
+}
+/* ================= LARGE DESKTOP TESTIMONIALS ================= */
+@media (min-width: 1441px) {
+
+  .testimonials-section {
+    padding: 120px 0;
+  }
+
+  .testimonials-container {
+    max-width: 1400px;
+    padding: 0 40px;
+  }
+
+  .testimonials-header p {
+    font-size: 40px;
+  }
+
+  .carousel-track {
+    gap: 36px;
+  }
+
+  .testimonial-card {
+    padding: 36px 28px;
+    border-radius: 26px;
+  }
+
+  .testimonial-card .text {
+    font-size: 17px;
+  }
+
+  /* wider arrow spacing looks premium */
+  .nav-btn.left {
+    left: -64px;
+  }
+
+  .nav-btn.right {
+    right: -64px;
+  }
+}
