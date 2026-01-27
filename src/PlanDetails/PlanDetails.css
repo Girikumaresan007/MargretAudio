@@ -209,3 +209,124 @@
   align-self: flex-start;
 }
 }
+/* =====================================================
+   🌍 UNIVERSAL RESPONSIVE FIX – ALL DEVICES
+   (ADD ONLY – DO NOT REMOVE EXISTING CSS)
+   ===================================================== */
+
+/* ---------- VERY SMALL PHONES (≤360px) ---------- */
+@media (max-width: 360px) {
+  .plan-details-page .container {
+    padding: 40px 14px;
+  }
+
+  .plan-details-page h1 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .plan-details-page .description {
+    font-size: 13px;
+  }
+
+  .plan-details-page .pills {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .plan-details-page .pill {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .plan-details-page .card {
+    padding: 22px;
+  }
+
+  .plan-details-page .price {
+    font-size: 28px;
+  }
+}
+
+/* ---------- SMALL & NORMAL MOBILES (361px–600px) ---------- */
+@media (max-width: 600px) {
+  .plan-details-page .container {
+    padding: 45px 16px;
+  }
+
+  .plan-details-page h1 {
+    font-size: 30px;
+  }
+
+  .plan-details-page .description {
+    font-size: 14px;
+  }
+
+  .plan-details-page .features {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-details-page .card {
+    margin-top: 30px;
+  }
+}
+
+/* ---------- LARGE MOBILES / SMALL TABLETS (601px–768px) ---------- */
+@media (min-width: 601px) and (max-width: 768px) {
+  .plan-details-page h1 {
+    font-size: 34px;
+  }
+
+  .plan-details-page .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .plan-details-page .card {
+    max-width: 420px;
+    margin: auto;
+  }
+}
+
+/* ---------- TABLETS (769px–1024px) ---------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .plan-details-page .container {
+    max-width: 960px;
+    gap: 30px;
+  }
+
+  .plan-details-page h1 {
+    font-size: 36px;
+  }
+
+  .plan-details-page .card {
+    left: 0;
+    top: 40px;
+  }
+}
+
+/* ---------- SMALL LAPTOPS (1025px–1280px) ---------- */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .plan-details-page .container {
+    max-width: 1140px;
+  }
+
+  .plan-details-page .card {
+    left: 0;
+    top: 60px;
+  }
+}
+
+/* ---------- DESKTOPS (1281px–1600px) ---------- */
+@media (min-width: 1281px) {
+  .plan-details-page .container {
+    max-width: 1320px;
+  }
+}
+
+/* ---------- ULTRA-WIDE / 4K SCREENS ---------- */
+@media (min-width: 1600px) {
+  .plan-details-page .container {
+    max-width: 1500px;
+    gap: 60px;
+  }
+}
