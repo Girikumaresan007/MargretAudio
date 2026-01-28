@@ -260,3 +260,30 @@
     right: -64px;
   }
 }
+/* ================= FIX ONLY FOR iPAD / TABLETS ================= */
+/* iPad Mini, iPad Air, iPad Pro portrait */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .carousel-track {
+    gap: 20px;
+  }
+
+  .testimonial-card {
+    width: calc(50% - 10px); /* ✅ exactly 2 cards */
+    flex: 0 0 auto;
+  }
+
+  /* arrows stay outside, not over cards */
+  .nav-btn.left {
+    left: -28px;
+  }
+
+  .nav-btn.right {
+    right: -28px;
+  }
+
+  .testimonials-header p {
+    font-size: 32px;
+  }
+}
